@@ -241,7 +241,17 @@ module Jammit
 
     # Concatenate together a list of asset files.
     def concatenate(paths)
-      [paths].flatten.map {|p| read_binary_file(p) }.join("\n")
+      if (layout = paths.find {|path| path =~ /javascript_layout\.js$/})
+        paths.delete layout
+        layout = read_binary_file(layout)
+
+        [paths].flatten.map { |p|
+          js = read_binary_file(p)
+          p =~ /\/vendor\// ? js : layout.split(/\/\*body\*\//).join(js)
+        }.join("\n")
+      else
+        [paths].flatten.map {|p| read_binary_file(p) }.join("\n")
+      end
     end
 
     # `File.read`, but in "binary" mode.
