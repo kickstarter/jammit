@@ -260,7 +260,7 @@ module Jammit
 
         [paths].flatten.map { |p|
           js = read_binary_file(p)
-          p =~ /\/vendor\// ? js : layout.split(/\/\*body\*\//).join(js)
+          p =~ /\/vendor\/|\/bower_components\// ? js : layout.split(/\/\*body\*\//).join(js)
         }.join("\n")
       else
         [paths].flatten.map {|p| read_binary_file(p) }.join("\n")
