@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name      = 'jammit'
-  s.version   = '0.6.6.ksr2'         # Keep version in sync with jammit.rb
+  s.version   = '0.6.6.ksr3'         # Keep version in sync with jammit.rb
   s.date      = '2013-03-20'
 
   s.homepage    = "http://documentcloud.github.com/jammit/"
